@@ -140,7 +140,7 @@ function task6() {
     }
     while (true) {
         var stawka = prompt("Введите размер ипотечной ставки(число)");
-        stawka = parseInt(stawka);
+        stawka = parseFloat(stawka);
         if (isNaN(stawka)) {
             alert("Введенное значение не является числом.");
         }
