@@ -1,7 +1,7 @@
 function task1() {
     while (true) {
-        var height_par = prompt("Введите высоту прямоугольного параллелепипеда(число)");
-        height_par = parseInt(height_par);
+        var height_par = +prompt("Введите высоту прямоугольного параллелепипеда(число)");
+        // height_par = parseInt(height_par);
         if (isNaN(height_par)) {
             alert("Введенное значение не является числом. Введите высоту прямоугольного параллелепипеда(число)");
         }
@@ -10,8 +10,8 @@ function task1() {
         }
     }
     while (true) {
-        var length_par = prompt("Введите длину прямоугольного параллелепипеда(число)");
-        length_par = parseInt(length_par);
+        var length_par = +prompt("Введите длину прямоугольного параллелепипеда(число)");
+        // length_par = parseInt(length_par);
         if (isNaN(length_par)) {
             alert("Введенное значение не является числом. Введите длину прямоугольного параллелепипеда(число)");
         }
@@ -20,8 +20,8 @@ function task1() {
         }
     }
     while (true) {
-        var width_par = prompt("Введите ширину прямоугольного параллелепипеда(число)");
-        width_par = parseInt(width_par);
+        var width_par = +prompt("Введите ширину прямоугольного параллелепипеда(число)");
+        // width_par = parseInt(width_par);
         if (isNaN(width_par)) {
             alert("Введенное значение не является числом. Введите ширину прямоугольного параллелепипеда(число)");
         }
@@ -158,5 +158,19 @@ function task6() {
             break;
         }
     }
+    kolLet = kolLet*12;// кол-во в месяцах
+    stawka = (stawka/100)/12; // ставка в месяц
+
+    var annuetetpay = IpotecCredit*((stawka*Math.pow((1+stawka), kolLet))/(Math.pow((1+stawka), kolLet)-1));
+    console.log("Ежемесячный платёж = "+parseInt(annuetetpay));
+    annuetetpay = annuetetpay*kolLet;
+    console.log("Всего вы заплатите - "+parseInt(annuetetpay));
+    annuetetpay = annuetetpay - IpotecCredit;
+    console.log ("Переплата по кредиту = "+parseInt(annuetetpay));
+    console.log ("Вся информация выше - верна для аннуитетного платежа");
+}
+
+function tasktest() {
+
 
 }
