@@ -170,7 +170,159 @@ function task6() {
     console.log ("Вся информация выше - верна для аннуитетного платежа");
 }
 
-function tasktest() {
+function task2_1(){
+    var X = prompt("Введите координаты вершины Х через пробел");
+    X = X.split(' ');
+    var Y = prompt("Введите координаты вершины Y через пробел");
+    Y = Y.split(' ');
+    var Z = prompt("Введите координаты вершины Z через пробел");
+    Z = Z.split(' ');
 
+    var x1 = X[0], x2 = X[1]; //кординаты точки X
+    var y1 = Y[0], y2 = Y[1]; //Координаты точки Y
+    var z1 = Z[0], z2 = Z[1]; // Координаты точки Z
+
+    var a = x1 - y1;
+    var b = x2 - y2;
+    var c = y1 - z1;
+    var d = y2 - z2;
+    var e = x1 - z1;
+    var f = x2 - z2;
+
+        var XY = Math.sqrt(a * a + b * b); // расстояние между точкой X и Y
+        var YZ = Math.sqrt(c * c + d * d); // расстояние между точкой Y и Z
+        var XZ = Math.sqrt(e * e + f * f); // расстояние между точкой X и Z
+        if(XY == 0 || YZ == 0 || XZ == 0) {
+        console.log("это точка");
+        }
+        if (XY<=YZ && YZ<XZ){
+            if (((Math.floor(Math.pow(XY, 2)) + Math.floor(Math.pow(YZ, 2))) === Math.floor(Math.pow(XZ, 2)))){
+                console.log("Треугольник прямоугольный");
+                } else {
+                   console.log("это не прямоугольный треугольник");
+                }
+            }
+        if (XY<=XZ && XZ<YZ){
+            if ((Math.floor(Math.pow(XZ, 2)) + Math.floor(Math.pow(XY, 2))) === Math.floor(Math.pow(YZ, 2))){
+                console.log("Треугольник прямоугольный");
+            } else {
+                console.log("это не прямоугольный треугольник");
+            }
+        }
+        if (YZ<=XZ && XZ<XY){
+            if ((Math.floor(Math.pow(YZ, 2)) + Math.floor(Math.pow(XZ, 2))) === Math.floor(Math.pow(XY, 2))){
+                console.log("Треугольник прямоугольный");
+            } else {
+                console.log("это не прямоугольный треугольник");
+            }
+        }
+}
+
+function task2_2(){
+let month = new Date().getMonth();
+if (month == 11 || month == 0 || month == 1){
+    console.log("Сейчас Зима");
+}
+else if (month == 2 ||month ==  3 ||month == 4){
+    console.log("Сейчас Весна");
+}
+else if (month == 5 ||month ==  6 ||month == 7){
+    console.log("Сейчас Лето");
+}
+else{
+    console.log("Сейчас Осень");
+}
 
 }
+
+function task2_3(){
+    // не нравится мне как я сделал, может есть другой вариант, и не понятно как добавить пробел если длина a*b меньше 10
+    let a = 1;
+    let b = 1;
+for (;a<11;a++){
+  for (;b<11;b++){
+      console.log(a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b);
+      a=a-9;
+  }
+}
+
+}
+
+function task2_4(){
+var arr = [2,1,10,12,3,2,7,66,6666,777];
+for (var i=1;i<arr.length;i++){
+    for(var j=0;j<i;j++){
+        if ( arr[j]>arr[j+1]){
+            var temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+        }
+    }
+}
+    console.log(arr,);
+
+}
+
+function task2_5(){
+    // Создать таблицу соответствия между весом в фунтах и весом в килограммах для значений от 1 до 10.
+    let funt = 0.45359237;
+    console.log("Фунты в килограммы");
+    console.log("От 1 до 10");
+    console.log("фунты кг");
+    for(var i=1;i<11;i++){
+        console.log(i+"    "+parseFloat((funt*i).toFixed(4)));
+    }
+
+}
+
+function task2_6(){
+    var plate = 22;
+    var vanish = 5;
+    for (var i=0;0<=plate;i++){
+        if (vanish == 0){
+            console.log("ваниш закончился.... аминь, осталось "+plate+" непомытых тарелок")
+                   break;}
+        if (plate==0){
+            console.log("тарелки закончились, осталось "+vanish+" порций ваниша")
+            break;}
+        console.log("Осталось "+(vanish-0.5)+" порций Ваниша");
+        vanish=vanish-0.5;
+        plate=plate-1;
+    }
+}
+
+function task2_7(){
+    for (let i=1000;i<9999;i=i+3){
+        console.log(i);
+    }
+}
+
+function task2_8(){
+    for (let i=90;i>=0;i=i-5){
+        console.log(i);
+    }
+}
+
+function task2_9(){
+    let j=2;
+    for (let i=0;i<20;i++){
+        console.log(j);
+        j=j*2;
+    }
+
+}
+function task2_10() {
+//сам придумал, по-моему зачетно получилось)
+var sum = 0;
+for (var i=1;i<=999999;i++) {
+    var a = i / 100000 + "";
+    var b = a.split('');
+    b.splice(1, 1);
+    if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
+        sum = sum + 1;
+    }
+    }
+    console.log(sum);
+}
+
+
