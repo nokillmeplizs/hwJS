@@ -237,15 +237,27 @@ else{
 
 function task2_3(){
     // не нравится мне как я сделал, может есть другой вариант, и не понятно как добавить пробел если длина a*b меньше 10
-    let a = 1;
-    let b = 1;
-for (;a<11;a++){
-  for (;b<11;b++){
-      console.log(a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b);
-      a=a-9;
+
+console.log("вариант2");
+var c;
+for (var a = 1;a<10;a++){
+    c = '';
+  for (var b = 1;b<10;b++){
+      c+=(a*b<10?' '+a*b:a*b)+' ';
   }
+    console.log(c);
 }
 
+    // console.log("вариант1");
+
+    // let a = 1;
+    // let b = 1;
+    // for (;a<11;a++){
+    //     for (;b<11;b++){
+    //         console.log(a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b,++a*b);
+    //         a=a-9;
+    //     }
+    // }
 }
 
 function task2_4(){
@@ -312,7 +324,7 @@ function task2_9(){
 
 }
 function task2_10() {
-//по-моему зачетно получилось)
+
 var sum = 0;
 for (var i=1;i<=999999;i++) {
     var a = i / 100000 + "";
@@ -324,5 +336,75 @@ for (var i=1;i<=999999;i++) {
     }
     console.log(sum);
 }
+// Задача 1
+// Напишите функцию, которая в зависимости от переданных
+// в нее целочисленных аргументов "количество дней", будет выводить
+// слово "день" в нужно форме ("если передали - 1, то 1 день",
+//     "если передали - 3, то 3 дня" и т.д).
+function task3_1() {
+    var dayNumber = prompt("введите день");
+    var lastNumber=dayNumber.split('').pop();
+    if (dayNumber==1){
+        console.log(dayNumber+" день")
+    }
+    if (dayNumber<5 && dayNumber>1 ){
+        console.log(dayNumber+" дня")
+    }
+    if (dayNumber>=5 && dayNumber <=20){
+        console.log(dayNumber+" дней")
+    }
+    if (dayNumber>20){
+        if (lastNumber==1){
+            console.log(dayNumber+" день")
+        }
+        if (lastNumber<5 && lastNumber>1 ){
+            console.log(dayNumber+" дня")
+        }
+        if (lastNumber==5 || lastNumber==6 ||lastNumber==7 ||lastNumber==8 ||lastNumber==9 ||lastNumber==0){
+            console.log(dayNumber+" дней")
+        }
+    }
+}
 
+function task3_2() {
+
+}
+
+function task3_3() {
+        var arr = prompt("введите числа через ,").split(',');
+        var b = arr.slice(0);
+        b[1]=99;
+        console.log(arr,b);
+    }
+
+
+
+function task3_4_1() {
+    var n = +prompt("введите первое число");
+    var m = +prompt("введите второе число");
+    if (n > m){
+        var temp = n;
+        n = m;
+        m = temp;
+    }
+        let sum=0;
+        for (let i=n;i<=m;i++){
+            sum=sum+i;
+        }
+   console.log(sum);
+    }
+
+// function task3_4_2(n,m) {
+//    var sum=0;
+//    if (n<=m){
+//        sum = sum + n ;
+//        return task3_4_2(n+1,m);
+//       }
+//       else {
+//           return sum;
+//       }
+// }
+function task3_5() {
+
+}
 
