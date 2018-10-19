@@ -324,17 +324,46 @@ function task2_9(){
 }
 function task2_10() {
 
-var sum = 0;
-for (var i=1;i<=999999;i++) {
-    var a = i / 100000 + "";
-    var b = a.split('');
-    b.splice(1, 1);
-    if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
-        sum = sum + 1;
-    }
+// var sum = 0;
+// for (var i=1;i<=999999;i++) {
+//     var a = i / 100000 + "";
+//     var b = a.split('');
+//     b.splice(1, 1);
+//     if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
+//         sum = sum + 1;
+//     }
+//     }
+//     console.log(sum);
+
+    sum = 0;
+    for (var i = 999; i <= 999999; i++) {
+        var a = i + "";
+        if (a.length == 4) {
+            a = "00" + i;
+            var b = a.split('');
+            if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
+                sum = sum + 1;
+            }
+        }
+        if (a.length == 5) {
+            a = "0" + i;
+            var b = a.split('');
+            if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
+                sum = sum + 1;
+            }
+        }
+        if (a.length == 6) {
+            a = "" + i;
+            var b = a.split('');
+            if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
+                sum = sum + 1;
+            }
+        }
+
     }
     console.log(sum);
 }
+
 // Задача 1
 // Напишите функцию, которая в зависимости от переданных
 // в нее целочисленных аргументов "количество дней", будет выводить
@@ -488,7 +517,7 @@ function searchsub(string,substring) {
         console.log("подстрока "+ substring+" найдена на "+foundPosition+" позиции");
         position = foundPosition + 1;
     }
-};
+}
 searchsub('шла Саша по шоссе и сосала сушку','ш');
 // Задание 3
 // Написать функцию - конвертер строки.
@@ -503,7 +532,7 @@ function converter(string,registr) {
         string = string.toUpperCase();
     }
     console.log(string);
-};
+}
 converter('БОЛЬШИЕ БУКВЫ СТАЛИ МАЛЕНЬКИМИ',0);
 converter('маленькие буквы стали большими',1);
 
@@ -522,8 +551,26 @@ console.log("Стало "+$date);
 //     Вы их присваиваете переменной.
 //     Переставьте названия так, чтобы они были упорядочены по алфавиту.
 
-function sortstring() {
+function sortstring(){
     var arr = prompt("ВВедите название городов через пробел");
     arr = arr.split(' ').sort();
     console.log(arr);
+}
+
+function test() {
+    sum = 0;
+    var i = 1001;
+        var a = i + "";
+        console.log (a.length);
+        if (a.length == 4) {
+            a = "00" + i;
+            console.log (a);
+            var b = a.split('');
+            if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
+                sum = sum + 1;
+            }
+        }
+
+    console.log(sum);
+
 }
