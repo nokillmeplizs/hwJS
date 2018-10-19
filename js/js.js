@@ -46,7 +46,7 @@ var gardenArea = 10; // площадь садового участка в сот
 var oneSotkaArea = 10*10; // площадь 1 сотки
 var gradkaArea = 15*25; // площадь грядки в метрах
     gardenArea = gardenArea * oneSotkaArea; // площадь садового участка в метрах
-var freeland = gardenArea - (parseInt(gardenArea/gradkaArea))*gradkaArea;
+var freeland = gardenArea%gradkaArea;
 
     console.log("Осталось не занятой земли "+freeland+" м2");
 }
@@ -236,7 +236,6 @@ else{
 }
 
 function task2_3(){
-    // не нравится мне как я сделал, может есть другой вариант, и не понятно как добавить пробел если длина a*b меньше 10
 
 console.log("вариант2");
 var c;
@@ -366,9 +365,30 @@ function task3_1() {
     }
 }
 
-function task3_2() {
+// Задача 2 (не обязательная)
+// Напиши функцию map(fn, array), которая принимает на вход функцию и массив, и обрабатывает каждый элемент массива переданной функцией (fn), возвращая новый массив.
+//     Функция не должна изменять переданный ей массив.
+//     Если аргументы не заданы – выводить сообщение об ошибке
+//
+// Пример:
+//     function square(x) { return x * x; } // возведение в квадрат
+// console.log( map(square, [1, 2, 3, 4]) ); // [1, 4, 9, 16]
+// console.log( map(square, []) ); // []
 
+function map(fn, arr){
+    var newarr = [];
+    for(var i=0; i<arr.length; ++i){
+        newarr.push(plus3(arr[i]))
+    }
+    return newarr
 }
+
+function plus3(x) {
+    return x=x+3;
+}
+
+var arr = [1,4,4,5,6];
+console.log(map(plus3, arr));
 
 function task3_3() {
         var arr = prompt("введите числа через ,").split(',');
@@ -394,17 +414,116 @@ function task3_4_1() {
    console.log(sum);
     }
 
-// function task3_4_2(n,m) {
-//    var sum=0;
-//    if (n<=m){
-//        sum = sum + n ;
-//        return task3_4_2(n+1,m);
-//       }
-//       else {
-//           return sum;
-//       }
-// }
+    // рекурсия
+var sum=0;
+function task3_4_2(n,m) {
+    if (n<=m){
+       sum = sum + n ;
+       return task3_4_2(n+1,m);
+      }
+      else {
+          return sum;
+      }
+}
 function task3_5() {
 
 }
+// ======================
 
+// Задание 1
+// 1.1. создать 2 объекта sity1 и sity2 со следующими свойствами:
+//     name, population, mayor
+// двумя разными способами (первый объект одним способом, второй другим)
+//    function createobj() {
+       var sity1 = {
+           name: 'SanktPeterburg',
+           population: 5284800,
+           mayor: 'Poltavchenko'
+       };
+       var sity2 = new Object();
+       sity2.name = 'Moskow';
+       sity2.population = 12500000;
+       sity2.mayor = 'Sobyanin';
+   // }
+// 1.2. sity1 добавить метод, который позволяет забирать какую-то часть населения sity2 (и соответственно добавлять к своему)
+function changepop (){
+    sity1.take_popilation_from_sity2 = function () {
+        var proc = 10;
+        var take10proc = Math.round(sity2.population / 100 * proc); //забирает по 10% от сити2 себе
+        sity2.population = sity2.population - take10proc;
+        sity1.population = sity1.population + take10proc;
+    };
+    console.log("Было население в городах " + sity1.population, sity2.population);
+    sity1.take_popilation_from_sity2();
+    console.log("Стало население в городах " + sity1.population, sity2.population);
+};
+// Написать функцию (вне этих объектов),
+// которая показывает мэра города (в зависимости от объекта, переданного ей в качестве аргумента)
+ function showMayor(name) {
+     console.log(name.mayor);
+ }
+showMayor(sity1);
+showMayor(sity2);
+
+// 1.4. Создать объект president c методом changeCountryMayor(),
+// благодаря которому он сможет менять мэра города (в зависимости от объекта, переданного в качестве аргумента)
+ var president = {
+     changeCountryMayor:function (objname,newMayor) {
+
+         console.log(objname.mayor+" был уволен президентом!!");
+         objname.mayor = newMayor;
+         console.log("Да здравствует новый мэр - "+newMayor);
+     }
+ };
+ president.changeCountryMayor(sity1,'новый клевый мэр');
+
+
+// Задание 2
+// Написать функцию, которая на вход принимает строку и подстроку и ищет ВСЕ вхождения подстроки в строку
+function searchsub(string,substring) {
+    var position = 0;
+    while (true) {
+        var foundPosition = string.indexOf(substring, position);
+        if (foundPosition == -1) break;
+        console.log("подстрока "+ substring+" найдена на "+foundPosition+" позиции");
+        position = foundPosition + 1;
+    }
+};
+searchsub('шла Саша по шоссе и сосала сушку','ш');
+// Задание 3
+// Написать функцию - конвертер строки.
+//     Возможности:
+// перевод всех символов в верхний регистр,
+//     перевод всех символов в нижний регистр,
+function converter(string,registr) {
+    if(registr ==0 ){
+        string = string.toLowerCase();
+    }
+    if(registr == 1){
+        string = string.toUpperCase();
+    }
+    console.log(string);
+};
+converter('БОЛЬШИЕ БУКВЫ СТАЛИ МАЛЕНЬКИМИ',0);
+converter('маленькие буквы стали большими',1);
+
+// Задание 4
+// В переменной $date лежит дата в формате '30-11-2017'. Преобразуйте эту дату в формат '2017.11.30'.
+
+var $date = '30-11-2017';
+console.log("Было "+$date);
+var arr = $date.split('-');
+arr.reverse();
+$date = arr.join('-');
+console.log("Стало "+$date);
+//
+// Задание 5
+// Допустим, пользователь вводит названия городов через пробел.
+//     Вы их присваиваете переменной.
+//     Переставьте названия так, чтобы они были упорядочены по алфавиту.
+
+function sortstring() {
+    var arr = prompt("ВВедите название городов через пробел");
+    arr = arr.split(' ').sort();
+    console.log(arr);
+}
