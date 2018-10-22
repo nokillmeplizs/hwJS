@@ -1,3 +1,4 @@
+'use strict';
 function task1() {
     while (true) {
         var height_par = +prompt("Введите высоту прямоугольного параллелепипеда(число)");
@@ -557,20 +558,103 @@ function sortstring(){
     console.log(arr);
 }
 
-function test() {
-    sum = 0;
-    var i = 1001;
-        var a = i + "";
-        console.log (a.length);
-        if (a.length == 4) {
-            a = "00" + i;
-            console.log (a);
-            var b = a.split('');
-            if ((+b[0]) + (+b[1]) + (+b[2]) == (+b[3]) + (+b[4]) + (+b[5])) {
-                sum = sum + 1;
-            }
+function risowatpole() {
+    var razmerpola = +prompt("Введите размер поля");
+
+    let targetdiv = document.getElementsByClassName('task5-1-1');//нашел нужный див
+    let div = document.createElement('div');//создал див
+    div.setAttribute('id','divpole');//дал диву id-divpole
+    let table = document.createElement('table');//создаем таг table
+    table.setAttribute('cellspacing', '0');
+    table.setAttribute('cellpadding', '0');
+    var y,tr;
+    for (let i=0; i<razmerpola;i++){
+        tr = document.createElement('tr');
+        for (y=0; y<razmerpola;y++){
+            tr.appendChild(document.createElement('td'));
         }
+        table.appendChild(tr);
+    }
+    div.appendChild(table);
+    targetdiv[0].appendChild(div);
 
-    console.log(sum);
 
+}
+
+function showtime(){
+
+        var now = new Date();
+        document.getElementById('time').innerHTML = now.toLocaleTimeString();
+
+    setTimeout(showtime, 1000);
+}
+
+
+let users = createUserArr();//  данные для вывода в таблицу
+function createUserArr() {
+    let arr = [];
+    for (let i = 0; i < 100; i++){
+        arr.push(
+            {
+                id: i,
+                name: "Какое-то имя",
+                email: "Email",
+                phone: "+79991112233",
+                position: "Должность"
+            }
+        )
+    }
+    return arr;
+}
+
+function zapolnittablicy(){
+let skolkostrok = Object.keys(users).length;
+let skolkostolbcow = Object.keys(users[0]).length;
+let targetdiv = document.getElementsByClassName('task5-3');//нашел нужный див
+let div = document.createElement('div');//создал див
+div.setAttribute('id','divpole');//дал диву id-divpole
+div.setAttribute('id','divpole2');//дал диву id-divpole
+let table = document.createElement('table');//создаем таг table
+table.setAttribute('cellspacing', '0');
+table.setAttribute('cellpadding', '0');
+var y,tr,td,text,id,name,email,phone,position;
+var tempmassiv=[];
+  var  th = document.createElement('th');
+    tr = document.createElement('tr');
+    id = '№';
+    name = "ИМЯ";
+    email = "Email";
+    phone = "Телефон";
+    position = "Должность";
+    tempmassiv=[id,name,email,phone,position];
+
+    for (y=0; y<skolkostolbcow;y++) {
+        text = document.createTextNode(tempmassiv[y]);
+        td = document.createElement('td');
+        td.appendChild(text);
+        tr.appendChild(td);
+        th.appendChild(tr);
+    }
+    tempmassiv=[];
+    table.appendChild(tr);
+for (let i=0; i<skolkostrok;i++){
+    tr = document.createElement('tr');
+    id = users[i].id+1;
+    name = users[i].name;
+    email = users[i].email;
+    phone = users[i].phone;
+    position = users[i].position;
+tempmassiv = [id,name,email,phone,position];
+    for (y=0; y<skolkostolbcow;y++){
+        text = document.createTextNode(tempmassiv[y]);
+        td = document.createElement('td');
+        td.appendChild(text);
+        tr.appendChild(td);
+
+    }
+    table.appendChild(tr);
+}
+
+div.appendChild(table);
+targetdiv[0].appendChild(div);
 }

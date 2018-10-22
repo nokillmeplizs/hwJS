@@ -7,3 +7,32 @@
 h1{
     text-align: center;
 }
+#divpole{
+    width: 600px;
+    height: 300px;
+    padding: 0;
+    margin: 3%;
+}
+#divpole,#divpole2 table {
+    height: 100%;
+    width: 100%;
+}
+#divpole,#divpole2 td {
+    border: 1px solid black;
+}
+#divpole,#divpole2 tr:nth-child(n+2) td {
+    border-top: none;
+}
+/*#divpole tr td:nth-child(n+2) {*/
+    /*border-left: none;*/
+/*}*/
+
+#time{
+    margin-left: 5%;
+    font-size: 35px;
+}
+#divpole2{
+    width: 600px;
+    padding: 0;
+    margin: 3%;
+}
