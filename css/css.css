@@ -17,7 +17,7 @@ h1{
     height: 100%;
     width: 100%;
 }
-#divpole,#divpole2 td {
+#divpole,#divpole2 td,th{
     border: 1px solid black;
 }
 #divpole,#divpole2 tr:nth-child(n+2) td {
@@ -35,4 +35,9 @@ h1{
     width: 600px;
     padding: 0;
     margin: 3%;
+}
+
+#hiddendiv{
+    border: 1px solid black;
+    display: none;
 }

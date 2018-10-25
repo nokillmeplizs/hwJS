@@ -591,20 +591,52 @@ function showtime(){
 
 
 let users = createUserArr();//  данные для вывода в таблицу
+users.sort();
 function createUserArr() {
+    let name;
+    let y;
+    let namelenght;
     let arr = [];
+    let arr2 = ['а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','э','ю','я'];
     for (let i = 0; i < 100; i++){
+        name="";
+        namelenght=Math.floor(Math.random()*5)+5;
+        for (y = 0;y<namelenght;y++){
+            name+=arr2[Math.floor(Math.random()*(arr2.length))]
+        }
         arr.push(
             {
                 id: i,
-                name: "Какое-то имя",
-                email: "Email",
-                phone: "+79991112233",
-                position: "Должность"
+                name: name,
+                email: "Email "+i,
+                phone: "+79991112233 "+i,
+                position: "Должность "+i
             }
         )
     }
     return arr;
+}
+
+zapolnittablicy();
+
+let thname = document.getElementById('col1');
+
+thname.addEventListener('click', sorting);
+
+
+function sorting() {
+    function compare(a,b) {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    }
+   users.sort(compare);
+    let newname = document.getElementsByTagName('td');
+    console.log(newname);
+    console.log(users);
+    console.log(1);
 }
 
 function zapolnittablicy(){
@@ -619,7 +651,7 @@ table.setAttribute('cellspacing', '0');
 table.setAttribute('cellpadding', '0');
 var y,tr,td,text,id,name,email,phone,position;
 var tempmassiv=[];
-  var  th = document.createElement('th');
+  var  th;
     tr = document.createElement('tr');
     id = '№';
     name = "ИМЯ";
@@ -630,10 +662,10 @@ var tempmassiv=[];
 
     for (y=0; y<skolkostolbcow;y++) {
         text = document.createTextNode(tempmassiv[y]);
-        td = document.createElement('td');
-        td.appendChild(text);
-        tr.appendChild(td);
-        th.appendChild(tr);
+        th = document.createElement('th');
+        th.setAttribute('id','col'+y);
+        th.appendChild(text);
+        tr.appendChild(th);
     }
     tempmassiv=[];
     table.appendChild(tr);
@@ -654,7 +686,53 @@ tempmassiv = [id,name,email,phone,position];
     }
     table.appendChild(tr);
 }
-
 div.appendChild(table);
 targetdiv[0].appendChild(div);
 }
+
+// Задача 1
+// Дана радиокнопка и контейнер (div) с какой либо информацией.
+//     Когда кнопка выбрана (checked) открывать div,
+//     в противном случае, скрывать блок.
+//вариант1
+// let prov = true;
+// let element = document.getElementById('radio');
+// element.addEventListener('click', showhidden);
+// // element.removeEventListener('click', clickHandler);
+//
+// function showhidden(event) {
+//     if (prov){
+//     document.getElementById('hiddendiv').style.display = "block";
+//     prov = false;
+//     return prov;
+//     }
+// else{
+//     document.getElementById('radio').checked = false;
+//         document.getElementById('hiddendiv').style.display = "none";
+//         prov = true;
+//         return prov;
+//     }
+//
+//
+// }
+//вариант2
+let element = document.getElementById('radio');
+element.addEventListener('mousedown', showhidden);
+element.addEventListener('click', cl);
+element.addEventListener('mouseup', cl);
+function cl(e) {
+    e.preventDefault();
+}
+function showhidden(e) {
+    e.preventDefault();
+    if (element.checked) {
+        document.getElementById('hiddendiv').style.display = "none";
+        element.checked = false;
+    }
+    else {
+        document.getElementById('hiddendiv').style.display = "block";
+        element.checked = true;
+    }
+    return false;
+}
+
