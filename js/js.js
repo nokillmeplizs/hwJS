@@ -633,10 +633,8 @@ function sorting() {
         return 0;
     }
    users.sort(compare);
-    let newname = document.getElementsByTagName('td');
-    console.log(newname);
-    console.log(users);
-    console.log(1);
+
+
 }
 
 function zapolnittablicy(){
@@ -735,4 +733,85 @@ function showhidden(e) {
     }
     return false;
 }
+//
+// Задача 2
+// Реализовать возможность добавления комментариев
+// к статье.
+//     Текст комментария пользователь вводит в <textarea>,
+//     добавление происходит по нажатию на кнопку Комментировать.
 
+
+let but = document.getElementById('buton');
+let count=1;
+let text;
+but.addEventListener('click',createComment);
+function createComment() {
+    let val = document.getElementById('textarea').value;
+    let comment = document.createElement('div');// контейнер с комментарием
+    let container = document.getElementById('maincontainer');//главный див
+    let container2 = document.createElement('div');
+    let contfortext = document.createElement('div');
+    let time = document.createElement('div');
+    time.setAttribute('id','time');
+    let now = new Date();
+    time.appendChild(document.createTextNode('отправлен в '+now.toLocaleTimeString()));
+    container2.setAttribute('id', 'container2');
+    comment.setAttribute('id','newcomment');
+    text = document.createTextNode('Это Ваш комментарий номер - '+count);
+    contfortext.appendChild(text);
+    console.log(contfortext);
+    comment.appendChild(document.createTextNode(val));
+    container2.appendChild(comment);
+    container2.appendChild(contfortext);
+    container2.appendChild(time);
+    console.log(comment);
+    count++;
+    container.appendChild(container2);
+
+}
+
+// Задача 4
+// Сгенерировать игровое поле (задача 1 предыдущего дз),
+// в ячейки рандомно спрятать несколько призов.
+//     Пользователю дается 3 попытки найти их -
+// по нажатию на ячейку либо открывается приз (иконка, изменения цвета и тд),
+// либо иконка, сообщающая, что приза нет.
+//     Количество оставшихся попыток выводим рядом с игровым полем.
+// задание про генерацию игрового поля
+function genField() {
+    let n = +prompt('введите размерность поля NxN');
+    let field = document.createElement('div');
+    field.setAttribute('id','field');
+    let main = document.getElementsByClassName('task6-4');
+    main[0].appendChild(field);
+    console.log(n);
+    for (let i=0; i<n*n; i++) {
+        let cell = document.createElement("div");
+        cell.style.height = field.offsetWidth/n + "px";
+        cell.style.width = field.offsetHeight/n + "px";
+        cell.classList.add("border");
+        cell.classList.add("cells");
+        field.appendChild(cell);
+    }
+}
+
+
+// let field = document.getElementById('field'); // []
+// console.log(field);
+// let cells = field.children; // ['cell 1', 'cell 2', 'cell 3', 'cell 4', ]
+// console.log(cells);
+//
+// function generatePrize(field, prizeCount) {
+//     for (let i = 0; i <  prizeCount; i++){
+//         field.children[Math.round(getRandom(0, field.children.length))]
+//             .setAttribute("data-prize", ";)");
+//         // field.children[Math.round(getRandom(0, field.children.length))]
+//         //     .setAttribute("data-prize", ";)");
+//     }
+// }
+//
+// function getRandom(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
+//
+// generatePrize(field, 6);

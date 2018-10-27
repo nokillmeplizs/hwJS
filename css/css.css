@@ -29,7 +29,7 @@ h1{
 
 #time{
     margin-left: 5%;
-    font-size: 35px;
+    font-size: 15px;
 }
 #divpole2{
     width: 600px;
@@ -40,4 +40,21 @@ h1{
 #hiddendiv{
     border: 1px solid black;
     display: none;
+}
+#container2 {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+}
+#field {
+    height: 600px;
+    width: 600px;
+}
+
+.cells {
+    box-sizing: border-box;
+    float: left;
 }
