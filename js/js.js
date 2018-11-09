@@ -633,6 +633,10 @@ function sorting() {
         return 0;
     }
    users.sort(compare);
+let table = document.getElementById('table');
+console.log(table.children);
+console.log(table.children[1]);
+
 
 
 }
@@ -647,6 +651,7 @@ div.setAttribute('id','divpole2');//дал диву id-divpole
 let table = document.createElement('table');//создаем таг table
 table.setAttribute('cellspacing', '0');
 table.setAttribute('cellpadding', '0');
+table.setAttribute('id','table');
 var y,tr,td,text,id,name,email,phone,position;
 var tempmassiv=[];
   var  th;
@@ -778,13 +783,20 @@ function createComment() {
 // либо иконка, сообщающая, что приза нет.
 //     Количество оставшихся попыток выводим рядом с игровым полем.
 // задание про генерацию игрового поля
+
+let butt = document.getElementById('buton2');
+butt.addEventListener('click',genField);
+let kolpopetka =3;
+let score=0;
 function genField() {
+    let main2 = document.createElement('div');
+    main2.setAttribute('id','main');
     let n = +prompt('введите размерность поля NxN');
     let field = document.createElement('div');
     field.setAttribute('id','field');
     let main = document.getElementsByClassName('task6-4');
-    main[0].appendChild(field);
-    console.log(n);
+    main[0].appendChild(main2);
+    main2.appendChild(field);
     for (let i=0; i<n*n; i++) {
         let cell = document.createElement("div");
         cell.style.height = field.offsetWidth/n + "px";
@@ -793,25 +805,67 @@ function genField() {
         cell.classList.add("cells");
         field.appendChild(cell);
     }
+
+    let popetka = document.createElement('div');
+    let naidenoprizow = document.createElement('div');
+    naidenoprizow.setAttribute('id','naidenoprizow');
+    naidenoprizow.appendChild(document.createTextNode('Найдено призов '+score));
+    popetka.setAttribute('id','popetka');
+    popetka.appendChild(document.createTextNode('У вас есть '+kolpopetka+' попыток'));
+    main2.appendChild(naidenoprizow);
+    main2.appendChild(popetka);
+
+    field = document.getElementById('field');
+    let cells = field.children;
+    let prizeCount = parseInt(3+((n*n)*20/100));
+    console.log(prizeCount);
+    function generatePrize() {
+        for (let i = 0; i <=  prizeCount; i++){
+            cells[Math.round(getRandom(0, cells.length))].setAttribute("id", "prize");
+        }
+    }
+    function getRandom(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+
+    let gamepole = document.getElementById('field');
+    gamepole.addEventListener('click',cheakwin);
+
+    function cheakwin(event) {
+
+        let elem = event.target;
+        if(elem.hasAttribute('id')){
+        elem.style.background ='yellow';
+        score++;
+        kolpopetka=3;
+            popetka.innerHTML= 'Поздравляем , Вы нашли приз! Количество попыток опять '+kolpopetka;
+            naidenoprizow.innerHTML = 'Найдено призов '+score;
+            main2.appendChild(popetka);
+            main2.appendChild(naidenoprizow);
+        }
+        else{
+            kolpopetka--;
+            popetka.innerHTML= 'Количество оставшихся попыток '+kolpopetka;
+            main2.appendChild(popetka);
+        }
+
+        if (kolpopetka ===0){
+            alert('Игра окончена, Вы проиграли');
+            main[0].removeChild(main2);
+            kolpopetka=3;
+            score=0;
+        }
+        if (score===(prizeCount-1)){
+            alert('УРА! Вы нашли все призы');
+            main[0].removeChild(main2);
+            kolpopetka=3;
+            score=0;
+        }
+    }
+    generatePrize(field);
 }
 
 
-// let field = document.getElementById('field'); // []
-// console.log(field);
-// let cells = field.children; // ['cell 1', 'cell 2', 'cell 3', 'cell 4', ]
-// console.log(cells);
-//
-// function generatePrize(field, prizeCount) {
-//     for (let i = 0; i <  prizeCount; i++){
-//         field.children[Math.round(getRandom(0, field.children.length))]
-//             .setAttribute("data-prize", ";)");
-//         // field.children[Math.round(getRandom(0, field.children.length))]
-//         //     .setAttribute("data-prize", ";)");
-//     }
-// }
-//
-// function getRandom(min, max) {
-//     return Math.random() * (max - min) + min;
-// }
-//
-// generatePrize(field, 6);
+// по другому перебрать массив cells, чтобы были проверены все ячейки и не было повторов
+
