@@ -74,6 +74,8 @@ function drawPlayer() {
         50,50);
 }
 
+
+
 function draw() {
     for( let i=0;i<enemys.length;i++){
         enemys[i].findPlayer(posX,posY)
@@ -81,6 +83,7 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawEnemy();
     drawPlayer();
+
 
     if(x + stepX > canvas.width-Radius || x + stepX < Radius) {
         stepX = -stepX;
