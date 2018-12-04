@@ -5,7 +5,8 @@ $arr = [3, 1, 6, 0, 4, 5];
 foreach ($arr as $item){
     $summ += $item**2;
 }
-echo "сумма квадратов элементов массива равна ".$summ;
+echo "сумма квадратов элементов массива равна ".$summ.'<br>';
+
 
 //Task 3. Нарисуйте треугольник (или ромб) из символов *.
 //Высота треугольника равна 15.
@@ -19,38 +20,24 @@ while ($i<16){
     $i++;
 }
 
+//
 //Task4. Создать массив из дней недели. С помощью цикла foreach выведите все дни недели, а текущий день выведите жирным.
 //Текущий день можно получить с помощью функции date.
 //Название дней выводить по-русски
-$arr =["Понедельник","вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"];
+
+$arr =['Monday' => "понедельник",'Tuesday' => "вторник", 'Wednesday' => "среда", 'Thursday' => "четверг", 'Friday' => "пятница", 'Saturday' => "суббота", 'Sunday' => "воскресенье"];
 $thisday = date("l");
-if ($thisday == Monday){
-    $arr[0] = 'MONDAY';
-}
-if ($thisday == Tuesday){
-    $arr[1] = 'TUESDAY';
-}
-if ($thisday == Wednesday){
-    $arr[2] = 'WEDNESDAY';
-}
-if ($thisday == Thursday){
-    $arr[3] = 'THURSDAY';
-}
-if ($thisday == Friday){
-    $arr[4] = 'FRIDAY';
-}
-if ($thisday == Saturday){
-    $arr[5] = 'SATURDAY';
-}
-if ($thisday == Sunday){
-    $arr[6] = 'SUNDAY';
+foreach($arr as $key => $day){
+    if ($key === $thisday) {
+        echo '<b>'.$day.'</b>';
+        echo '<br>';
+    }
+    else {
+        echo $day;
+        echo '<br>';
+    }
 }
 
-foreach($arr as $day){
-    echo $day;
-    echo '<br>';
-}
-$arr=[];
 //Task 5. Отсортировать массив по 'price'
 $arr = [
     '1'=> [
@@ -78,3 +65,31 @@ array_multisort($arr);
 echo '<pre>';
 var_dump($arr);
 echo '</pre>';
+
+// Task 6. мин мах
+function findMax($arr){
+    $a = $arr[0];
+    foreach ($arr as $item){
+        if ($item > $a){
+            $a = $item;
+
+        }
+
+    }
+    echo $a;
+}
+
+function findMin($arr){
+    $a = $arr[0];
+    foreach ($arr as $item){
+        if ($item < $a){
+            $a = $item;
+
+        }
+
+    }
+    echo $a;
+}
+$bb = [1,14,5,6,2,4,11];
+findMax($bb);
+findMin($bb);
