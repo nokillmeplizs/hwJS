@@ -272,7 +272,7 @@ function draw() {
     drawBullet();
     collisonBulletWithEnemy();
     printText('30px Arial','white','убито зомбей '+score,80,30);
-    printText('20px Arial','orange','Жизней: '+playerHealth,canvas.width-200,30);
+    printText('20px Arial','red','Жизней: '+playerHealth,canvas.width-200,30);
     drawDino();
     if (playerHealth === 0){
         drawGameOver();
