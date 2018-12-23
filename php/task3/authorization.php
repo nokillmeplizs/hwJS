@@ -16,38 +16,17 @@ if (isset($post['login'])){
             }
             elseif ($post['login'] == $userLogin[0]){
                 if (password_verify($post['password'], $userLogin[1])) {
-                    $_SESSION['echo'] = 'Вы успешно авторизовались';
                     $_SESSION['name'] = $userLogin[0];
                     $_SESSION['auth'] = true;
+                    echo '0';
                     break;
                 } else {
-                    $_SESSION['echo'] = 'Пароль неправильный.';
+                    echo '3';
                 }
             }
         }
     }
 }
-?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Авторизация</title>
-    <link rel="stylesheet" href="css/css.css">
-</head>
-<body>
-<?php if($_SESSION['auth'] == true){?>
-   <a id="out" href="logout.php">Выйти</a>
-    <h2>Привет <? echo $_SESSION['name']?>, поздравляем с авторизацией</h2>
-<?}else{?>
-<h2>Авторизация</h2>
-<form method="post" action="">
-    <input name="login" type="text" placeholder="Введите Логин" required>
-    <input name="password" type="password" placeholder="Введите пароль" required>
-    <input type="submit" value="Войти">
-</form>
-<p id="res"><? if($post['login'] != null){
-    echo $_SESSION['echo'];};}?></p>
-</body>
-</html>
+
+
 

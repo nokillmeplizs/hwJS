@@ -1,5 +1,5 @@
 <?php
 session_start();
 unset($_SESSION['auth']);
-header('Location: authorization.php');
+header('Location: authform.php');
 exit();

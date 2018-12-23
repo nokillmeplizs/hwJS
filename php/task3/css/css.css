@@ -1,9 +1,12 @@
 h2,form{
     text-align: center;
 }
-#res{
+#res,#page{
     text-align: center;
 }
 #out{
     text-align: right;
+}
+#page{
+    display: none;
 }
